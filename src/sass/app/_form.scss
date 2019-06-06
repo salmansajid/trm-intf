@@ -1,0 +1,722 @@
+.label {
+  border-radius: 0;
+}
+
+.label-primary {
+  background: $primary;
+}
+
+.label-info {
+  background: $primary-light;
+}
+
+.label-success {
+  background: $success;
+}
+
+.label-warning {
+  background: $warning;
+}
+
+.label-danger {
+  background: $danger;
+}
+
+.form-horizontal {
+  label {
+    line-height: 34px;
+    margin-bottom: 0;
+    padding-top: 0 !important;
+  }
+}
+
+.form-group {
+  margin-top: 10px;
+  label {
+    margin-bottom: 5px;
+    color: $default-text;
+    font-weight: $font-normal;
+    font-size: 12px;
+  }
+}
+
+.form-control {
+  color: $default-text;
+  @include placeholderStyle($default-text, 0.7);
+  border: 1px solid $input-border;
+  border-radius: 5px;
+  background-color: $input-background;
+  box-shadow: none;
+  &:focus {
+    box-shadow: none;
+    border-color: $primary-bg;
+    background: $input-background;
+  }
+}
+
+select.form-control {
+  padding-left: 8px;
+}
+
+textarea.form-control {
+  height: 96px;
+}
+
+.form-inline {
+  .form-group {
+    input {
+      width: 100%;
+    }
+    label {
+      margin-right: 12px;
+    }
+  }
+
+  button[type="submit"] {
+    margin-left: 12px;
+  }
+
+  label.custom-checkbox > span {
+    display: block;
+    margin-top: -13px;
+    margin-right: 10px;
+  }
+}
+
+@mixin setSwitchBorder($color) {
+  .bootstrap-switch.bootstrap-switch-on {
+    border-color: $color;
+  }
+}
+
+.switch-container {
+  display: inline-block;
+  &.primary {
+    @include setSwitchBorder($primary);
+  }
+  &.success {
+    @include setSwitchBorder($success);
+  }
+  &.warning {
+    @include setSwitchBorder($warning);
+  }
+  &.danger {
+    @include setSwitchBorder($danger);
+  }
+  &.info {
+    @include setSwitchBorder($primary-light);
+  }
+}
+
+.bootstrap-switch {
+  border-radius: 5px;
+  border: 1px solid $default;
+  transition: border-color ease-in-out .7s, box-shadow ease-in-out .7s;
+  &:focus {
+    outline: none;
+  }
+  &.bootstrap-switch-off {
+    border-color: $border;
+  }
+  &.bootstrap-switch-focused {
+    box-shadow: none;
+    &.bootstrap-switch-off {
+      border-color: $border;
+    }
+  }
+  .bootstrap-switch-container {
+    border-radius: 0;
+    &:focus {
+      outline: none;
+    }
+  }
+  .bootstrap-switch-handle-on {
+    border-radius: 0;
+    &.bootstrap-switch-default {
+      background: $default;
+    }
+    &.bootstrap-switch-success {
+      background: $success;
+    }
+    &.bootstrap-switch-primary {
+      background: $primary;
+    }
+    &.bootstrap-switch-warning {
+      background: $warning;
+    }
+    &.bootstrap-switch-danger {
+      background: $danger;
+    }
+    &.bootstrap-switch-info {
+      background: $primary-light;
+    }
+  }
+  .bootstrap-switch-handle-off {
+    border-radius: 0;
+  }
+
+  .bootstrap-switch-label {
+    background: transparent;
+  }
+
+  &.bootstrap-switch-animate .bootstrap-switch-container {
+    transition: margin-left .2s;
+  }
+}
+
+.switches {
+  margin-left: -12px;
+  margin-bottom: -12px;
+  .switch-container {
+    float: left;
+    margin-left: 12px;
+    margin-bottom: 12px;
+  }
+}
+
+.input-group {
+  width: 100%;
+  margin-bottom: 15px;
+  & > span {
+    border-radius: 0;
+  }
+}
+
+label.custom-checkbox {
+  padding-right: 0;
+  padding-left: 0;
+  margin-bottom: 0;
+  & > input {
+    height: 0;
+    z-index: -100 !important;
+    opacity: 0;
+    position: absolute;
+    &:checked {
+      & + span {
+        &:before {
+          content: "\f00c";
+          font-weight: $font-light;
+        }
+      }
+    }
+    &:disabled {
+      & + span {
+        color: $disabled;
+        cursor: not-allowed;
+        &:before {
+          border-color: $disabled !important;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+  & > span {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    line-height: 16px;
+    font-weight: $font-light;
+    cursor: pointer;
+    padding-left: 22px;
+    width: 100%;
+    &:before {
+      cursor: pointer;
+      font-family: fontAwesome;
+      font-weight: $font-light;
+      font-size: 12px;
+      color: $success;
+      content: "\a0";
+      background-color: transparent;
+      border: 1px solid $danger;
+      border-radius: 0;
+      display: inline-block;
+      text-align: center;
+      height: 16px;
+      line-height: 14px;
+      min-width: 16px;
+      margin-right: 6px;
+      position: relative;
+      top: 0;
+      margin-left: -22px;
+      float: left;
+    }
+    &:hover {
+      &:before {
+        border-color: $primary-bg;
+      }
+    }
+  }
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.cut-with-dots {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+label.custom-radio {
+  @extend .custom-checkbox;
+  & > input {
+    &:checked {
+      & + span {
+        &:before {
+          content: "\f111";
+        }
+      }
+    }
+  }
+  & > span {
+    &:before {
+      border-radius: 16px;
+      font-size: 9px;
+    }
+  }
+}
+
+@mixin customInput($color) {
+  & > span {
+    &:before {
+      color: $color;
+    }
+    &:hover {
+      &:before {
+        border-color: $color;
+      }
+    }
+  }
+}
+
+label.custom-input-primary {
+  @include customInput($primary);
+}
+
+label.custom-input-success {
+  @include customInput($success);
+}
+
+label.custom-input-warning {
+  @include customInput($warning)
+}
+
+label.custom-input-danger {
+  @include customInput($danger)
+}
+
+.form-horizontal {
+  .radio, .checkbox, .radio-inline, .checkbox-inline {
+    padding-top: 0px;
+  }
+}
+
+.input-demo {
+  line-height: 25px;
+}
+
+@mixin validationState($color, $focusColor) {
+  .control-label {
+    color: $default-text;
+  }
+  .form-control {
+    border: 1px solid $color;
+    &:focus {
+      box-shadow: none;
+      border-color: $focusColor;
+    }
+  }
+
+  label.custom-checkbox {
+    color: $color;
+    & > span {
+      &:before {
+        color: $color;
+      }
+      &:hover {
+        &:before {
+          border-color: $color;
+        }
+      }
+    }
+  }
+  .form-control-feedback {
+    color: $color;
+  }
+  .input-group-addon {
+    background-color: $color;
+    color: $label-text;
+  }
+}
+
+.has-success {
+  @include validationState($success-bg, $success);
+}
+
+.has-warning {
+  @include validationState($warning-bg, $warning);
+}
+
+.has-error {
+  @include validationState($danger-bg, $danger);
+}
+
+.has-feedback label ~ .form-control-feedback {
+  top: 21px;
+  font-size: 18px;
+}
+
+.bootstrap-select {
+  .btn-default {
+    &:focus {
+      color: $default-text;
+    }
+  }
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  background-color: $input-background;
+  color: $disabled;
+  border-color: $disabled-bg;
+  @include placeholderStyle($default-text, 0.5);
+}
+
+.form-control-rounded {
+  border-radius: 16px;
+}
+
+.help-block {
+  color: $help-text;
+}
+
+.help-block.error-block {
+  display: none;
+  .has-error &.basic-block {
+    display: block;
+  }
+}
+
+@mixin groupAddon($color) {
+  background: $color;
+  color: $label-text;
+  border-color: $color;
+}
+
+.input-group-addon-danger {
+  @include groupAddon($danger);
+}
+
+.input-group-addon-warning {
+  @include groupAddon($warning);
+}
+
+.input-group-addon-success {
+  @include groupAddon($success);
+}
+
+.input-group-addon-primary {
+  @include groupAddon($primary);
+}
+
+.checkbox-demo-row {
+  margin-bottom: 12px;
+}
+
+.dropdown-menu {
+  border-radius: 5px;
+}
+
+.bootstrap-select.btn-group {
+  button.btn.btn-default {
+    background: transparent;
+    color: $default-text;
+    &:hover {
+      background: $default;
+      box-shadow: none;
+      outline: 0 !important;
+    }
+    &:active {
+      background: $default;
+      box-shadow: none;
+    }
+  }
+  &.open {
+    > .btn.btn-default.dropdown-toggle {
+      background: $default;
+      box-shadow: none;
+      border-color: $border;
+    }
+    > .btn{
+      border-radius: 5px 5px 0 0;
+    }
+    .dropdown-menu.open {
+      border: 1px solid $border-light;
+      border-top: none;
+      border-radius: 0 0 5px 5px;
+    }
+  }
+  &.with-search.open .btn-default + .dropdown-menu {
+    .bs-searchbox .form-control {
+      background-color: $default;
+      border: 1px solid $input-border;
+    }
+    .no-results {
+      color: $dropdown-text;
+    }
+  }
+  .notify {
+    color: $dropdown-text;
+  }
+}
+
+tags-input .tags.focused {
+  /* outline: none; */
+  -webkit-box-shadow: 0 0 3px 1px rgba(46, 46, 46, 0.93);
+  -moz-box-shadow: 0 0 3px 1px rgba(46, 46, 46, 0.93);
+  box-shadow: 0 0 3px 1px rgba(46, 46, 46, 0.93);
+}
+
+tags-input {
+  .autocomplete {
+    background: $sidebar;
+    .suggestion-item {
+      background: transparent;
+      color: #fff;
+      font-weight: bold;
+      font-size: 12px;
+      &.selected {
+        color: $dropdown-text !important;
+        background-color: $drop-down-hover !important;
+        em {
+          font-size: 14px;
+          color: #fff;
+          background-color: $primary;
+        }
+      }
+    }
+    .suggestion-list {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      max-height: 280px;
+      overflow-y: auto;
+      position: relative;
+      background: $sidebar !important;
+
+    }
+
+  }
+  .tags{
+    color: $default-text;
+    background-color: $input-background;
+    border: 1px solid $input-border;
+    border-radius: 5px;
+    box-shadow: none;
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 26px;
+    width: 100%;
+    &.form-control {
+      display: block;
+      width: 100%;
+    }
+    .tag-item {
+      border-radius: 3px;
+      border-color: $input-border;
+      background: $danger;
+      font-weight: $font-normal;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 0px 8px;
+      &.selected{
+        background: $warning;
+        .remove-button{
+          color: $danger;
+        }
+      }
+      .remove-button{
+        color:$warning;
+      }
+      & [data-role="remove"]:hover {
+        box-shadow: none;
+      }
+    }
+    input {
+      color: $default-text;
+      background-color: $input-background;
+      border: 1px solid $input-border;
+      border-radius: 5px;
+      @include placeholderStyle($default-text, 0.8);
+      line-height: 22px;
+      font-size: 10px;
+      min-width: 60px;
+    }
+  }
+
+}
+
+.progress {
+  background: $progress-background;
+}
+
+.progress-bar-primary {
+  background-color: $primary;
+}
+
+.progress-bar-success {
+  background-color: $success-light;
+}
+
+.progress-bar-warning {
+  background-color: $warning;
+}
+
+.progress-bar-danger {
+  background-color: $danger;
+}
+
+.has-success .input-group-addon {
+  border: none;
+}
+
+.input-group > span.addon-left {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.input-group > span.addon-right {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.with-primary-addon:focus{
+  border-color: $primary;
+}
+.with-warning-addon:focus{
+  border-color: $warning;
+}
+.with-success-addon:focus{
+  border-color: $success;
+}
+.with-danger-addon:focus{
+  border-color: $danger;
+}
+
+.sub-little-text{
+  font-size: 12px;
+}
+
+.color-picker{
+  background: transparent;
+  border: none;
+  margin-top: -5px;
+  &:hover{
+    background: transparent;
+  }
+}
+
+tags-input{
+  display:block
+}
+tags-input *,tags-input :after,tags-input :before{
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box
+}
+tags-input .host{
+  position:relative;
+  margin-top:5px;
+  margin-bottom:5px;
+  height:100%
+}
+tags-input .host:active{
+  outline:0
+}
+tags-input .tags{
+  -moz-appearance:textfield;
+  -webkit-appearance:textfield;
+  padding:1px;
+  overflow:hidden;
+  word-wrap:break-word;
+  cursor:text;
+  height:100%
+}
+tags-input .tags.focused{
+  outline:0;-webkit-box-shadow:0 0 3px 1px $primary;
+  -moz-box-shadow:0 0 3px 1px $primary;
+  box-shadow:0 0 3px 1px $primary;
+}
+tags-input .tags .tag-list{margin:0;padding:0;list-style-type:none}
+tags-input .tags .tag-item{
+  margin:2px;padding:0 5px;display:inline-block;
+  float:left;
+
+  height:26px;
+  line-height:25px;
+  border-radius:3px;
+ }
+tags-input .tags .tag-item.selected{
+  background:$warning;
+}
+tags-input .tags .tag-item .remove-button{margin:0 0 0 5px;padding:0;
+  border:none;
+  background:0 0;
+  cursor:pointer;
+  vertical-align:middle;
+  font:700 16px Arial,sans-serif;
+}
+tags-input .tags .input.invalid-tag,tags-input .tags .tag-item .remove-button:active{
+  color:red
+}
+tags-input .tags .input{
+  border:0;outline:0;margin:2px;padding:0 0 0 5px;float:left;
+  height:26px;font:14px "Helvetica Neue",Helvetica,Arial,sans-serif
+}
+tags-input .tags .input::-ms-clear{
+  display:none
+}
+tags-input.ng-invalid .tags{
+  -webkit-box-shadow:0 0 3px 1px rgba(255,0,0,.6);
+  -moz-box-shadow:0 0 3px 1px rgba(255,0,0,.6);
+  box-shadow:0 0 3px 1px rgba(255,0,0,.6)
+}
+tags-input[disabled] .host:focus{outline:0}
+tags-input[disabled] .tags{background-color:#eee;cursor:default}
+tags-input[disabled] .tags .tag-item{
+  opacity:.65;
+  background:-webkit-linear-gradient(top,#f0f9ff 0,rgba(203,235,255,.75) 47%,rgba(161,219,255,.62) 100%);
+  background:linear-gradient(to bottom,#f0f9ff 0,rgba(203,235,255,.75) 47%,rgba(161,219,255,.62) 100%)
+}
+tags-input[disabled] .tags .tag-item .remove-button{cursor:default}
+tags-input[disabled] .tags .tag-item .remove-button:active{color:#585858}
+tags-input[disabled] .tags .input{background-color:#eee;cursor:default}
+tags-input .autocomplete{
+  margin-top:5px;position:absolute;
+  padding:5px 0;
+  z-index:999;
+  width:100%;
+  border:1px solid rgba(0,0,0,.2);
+  -webkit-box-shadow:0 5px 10px rgba(0,0,0,.2);
+  -moz-box-shadow:0 5px 10px rgba(0,0,0,.2);
+  box-shadow:0 5px 10px rgba(0,0,0,.2)
+}
+tags-input .autocomplete .suggestion-list{
+  margin:0;padding:0;
+  list-style-type:none;
+  max-height:280px;
+  overflow-y:auto;
+  position:relative
+}
+tags-input .autocomplete .suggestion-item{
+  padding:5px 10px;
+  cursor:pointer;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  font:16px "Helvetica Neue",
+  Helvetica,Arial,sans-serif;
+}
+
+
+

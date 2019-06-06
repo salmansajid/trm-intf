@@ -1,0 +1,286 @@
+<div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
+    <form name="vm.localTransactionForm" novalidate>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="with-line">Transaction Information</h3>
+                <div class="row wizard-containers">
+                    <div class="row">
+                        <div class="form-group col-md-4 clearfix">
+                            <label class="with-line control-label">Date</label>
+                            <div class="">
+                                <date-picker-input date="vm.localTransaction.date" name="date" required="true">
+                                </date-picker-input>
+                                <ng-messages for="vm.localTransactionForm.date.$error"
+                                             ng-show='(vm.localTransactionForm.$submitted || vm.localTransactionForm.date.$dirty)' role="alert">
+                                    <ng-message class="errorValidation" when="required">Please enter local trade date.</ng-message>
+                                </ng-messages>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 clearfix">
+                            <label class="with-line control-label">Buyer</label>
+                            <div class="">
+                                <selectize
+                                        ng-required="true"
+                                        placeholder="Buyer"
+                                        name="buyer"
+                                        id="buyer"
+                                        config="vm.buyerConfig"
+                                        options='vm.buyerOptions.list'
+                                        ng-model="vm.localTransaction.buyerId">
+                                </selectize>
+                                <ng-messages for="vm.localTransactionForm.buyer.$error"
+                                             ng-if='(vm.localTransactionForm.$submitted || vm.localTransactionForm.buyer.$dirty)'>
+                                    <div ng-message="required" class="errorValidation">Please select Buyer</div>
+
+                                    <div class="errorValidation" ng-message="validator">Buyer and Seller can not be same</div>
+                                </ng-messages>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4 clearfix">
+                            <label class="with-line control-label">Seller</label>
+                            <div class="">
+                                <selectize
+                                        placeholder="Seller"
+                                        ng-required="true"
+                                        name="seller"
+                                        id="seller"
+                                        config="vm.sellerConfig"
+                                        options='vm.sellerOptions.list'
+                                        ng-model="vm.localTransaction.sellerId">
+                                </selectize>
+                                <ng-messages for="vm.localTransactionForm.seller.$error"
+                                             ng-if='(vm.localTransactionForm.$submitted || vm.localTransactionForm.seller.$dirty)'>
+                                    <div ng-message="required" class="errorValidation">Please select seller.</div>
+                                    <div class="errorValidation" ng-message="validator">Buyer and Seller can not be same</div>
+                                </ng-messages>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 clearfix">
+                            <label class="with-line control-label">Product Item</label>
+                            <div class="">
+                                <selectize
+                                        ng-required="true"
+                                        name="productItem"
+                                        placeholder="Product Item"
+                                        id="productItem"
+                                        config="vm.productItemConfig"
+                                        options='vm.productItemOptions.list'
+                                        ng-model="vm.localTransaction.productItemId">
+                                </selectize>
+                                <ng-messages for="vm.localTransactionForm.productItem.$error"
+                                             ng-if='(vm.localTransactionForm.$submitted || vm.localTransactionForm.productItem.$dirty)'>
+                                    <div ng-message="required" class="errorValidation">Please enter product item.</div>
+                                </ng-messages>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4 clearfix">
+                            <label class="with-line control-label">Quantity <span class="titled">FCL</span></label>
+                            <div class="">
+                                <input
+                                        required
+                                        ng-pattern="/^[0-9.]+$/i"
+                                        ng-model="vm.localTransaction.quantityFCL"
+                                        class="form-control"
+                                        name="quantityFCL"
+                                        placeholder="Quantity"/>
+
+                                <ng-messages for="vm.localTransactionForm.quantityFCL.$error"
+                                             ng-show='(vm.localTransactionForm.$submitted || vm.localTransactionForm.quantityFCL.$dirty)' role="alert">
+                                    <ng-message class="errorValidation" when="required">Please enter quantity FCL value.</ng-message>
+                                    <ng-message class="errorValidation" when="pattern">Quantity FCL can only have numbers.</ng-message>
+                                </ng-messages>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-4 clearfix">
+                            <label class="with-line control-label">Quantity <span class="titled">MT</span></label>
+                            <div class="">
+                                <input
+                                        required
+                                        ng-pattern="/^[0-9.]+$/i"
+                                        ng-model="vm.localTransaction.quantity"
+                                        class="form-control"
+                                        name="quantity"
+                                        placeholder="Quantity"/>
+
+                                <ng-messages for="vm.localTransactionForm.quantity.$error"
+                                             ng-show='(vm.localTransactionForm.$submitted || vm.localTransactionForm.quantity.$dirty)' role="alert">
+                                    <ng-message class="errorValidation" when="required">Please enter quantity value.</ng-message>
+                                    <ng-message class="errorValidation" when="pattern">Quantity can only have numbers.</ng-message>
+                                </ng-messages>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4  clearfix">
+                            <label class="with-line control-label">Price <span class="titled">{{vm.currency + ' / MT'}}  </span></label>
+                            <div class="">
+                                <input
+                                        required
+                                        ng-pattern="/^[0-9.]+$/i"
+                                        ng-model="vm.localTransaction.price"
+                                        class="form-control"
+                                        name="price"
+                                        placeholder="Price {{vm.currency}} / MT"/>
+                                <ng-messages for="vm.localTransactionForm.price.$error"
+                                             ng-show='(vm.localTransactionForm.$submitted || vm.localTransactionForm.price.$dirty)' role="alert">
+                                    <ng-message class="errorValidation" when="required">Please enter price value.</ng-message>
+                                    <ng-message class="errorValidation" when="pattern">Price can only have numbers.</ng-message>
+                                </ng-messages>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="with-line control-label">File ID</label>
+                            <div class="">
+                                <input
+                                        ng-model="vm.localTransaction.fileId"
+                                        ng-required="true"
+                                        class="form-control"
+                                        name="fileId"
+                                        placeholder="Local Trade File Id"/>
+                                <ng-messages for="vm.localTransactionForm.fileId.$error"
+                                             ng-show='(vm.localTransactionForm.$submitted || vm.localTransactionForm.fileId.$dirty)' role="alert">
+                                    <ng-message class="errorValidation" when="required">Please enter local trade file id.</ng-message>
+                                </ng-messages>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="with-line control-label">Contract ID</label>
+                            <div class="">
+                                <input
+                                        ng-model="vm.localTransaction.contractId"
+
+                                        class="form-control"
+                                        placeholder="Local Trade Contract Id"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="with-line control-label"><span class="titled">Delivery Due</span> Date</label>
+                            <div class="">
+                                <date-picker-input date="vm.localTransaction.deliveryDueDate" name="deliveryDueDate" required="true">
+                                </date-picker-input>
+                                <ng-messages for="vm.localTransactionForm.deliveryDueDate.$error"
+                                             ng-show='(vm.localTransactionForm.$submitted || vm.localTransactionForm.deliveryDueDate.$dirty)' role="alert">
+                                    <ng-message class="errorValidation" when="required">Please enter local trade date.</ng-message>
+                                </ng-messages>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="with-line control-label"><span class="titled">Funds Due</span> Date</label>
+                            <div class="">
+                                <date-picker-input date="vm.localTransaction.fundsDueDate" name="fundsDueDate" required="true">
+                                </date-picker-input>
+                                <ng-messages for="vm.localTransactionForm.fundsDueDate.$error"
+                                             ng-show='(vm.localTransactionForm.$submitted || vm.localTransactionForm.fundsDueDate.$dirty)' role="alert">
+                                    <ng-message class="errorValidation" when="required">Please enter funds due date.</ng-message>
+                                </ng-messages>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-4">
+                            <label class="with-line control-label">International <span class="titled">File ID</span></label>
+                            <div class="">
+                                <selectize
+                                        ng-required="true"
+                                        name="internationalFileId"
+                                        placeholder="International File Id"
+                                        config="vm.internationalTradeConfig"
+                                        options='vm.internationalTradeOptions.list'
+                                        ng-model="vm.localTransaction.internationalFileId">
+                                </selectize>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="with-line control-label">Local <span class="titled">File ID</span></label>
+                            <div class="">
+                                <selectize
+                                        ng-required="false"
+                                        name="internationalFileId"
+                                        placeholder="Local File Id"
+                                        config="vm.localTradeConfig"
+                                        options='vm.localTradeOptions.list'
+                                        ng-model="vm.localTransaction.localFileId">
+                                </selectize>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-12 clearfix">
+                            <label class="with-line control-label">Other Information</label>
+                            <div class="">
+                                <textarea
+                                        ng-model="vm.localTransaction.otherInfo"
+                                        class="form-control">
+                                </textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h3 class="with-line">Payment Condition</h3>
+                <div class="row wizard-containers">
+                    <div class="row">
+                        <div class="form-group col-md-12 clearfix">
+                            <div class="input-demo radio-demo row">
+                                <div class="col-md-4">
+                                    <label class="radio-inline custom-radio nowrap">
+                                        <input type="radio" name="inlineRadioOptions"
+                                               ng-model="vm.localTransaction.paymentTerm" id="advance"
+                                               value="{{vm.paymentTerms.ADVANCE}}">
+                                        <span>Advance</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="radio-inline custom-radio nowrap">
+                                        <input type="radio" name="inlineRadioOptions"
+                                               value="{{vm.paymentTerms.PRODUCT_DELIVERY}}"
+                                               ng-model="vm.localTransaction.paymentTerm"
+                                               id="productDelivery" value="productDelivery">
+                                        <span>On Product Delivery</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="radio-inline custom-radio nowrap">
+                                        <input type="radio" name="inlineRadioOptions"
+                                               value="{{vm.paymentTerms.ON_DATE}}"
+                                               ng-model="vm.localTransaction.paymentTerm"
+                                               id="On Date" value="onDate">
+                                        <span>On Specified Date</span>
+                                        <div class="form-group" ng-show="vm.localTransaction.paymentTerms===vm.paymentTerms.ON_DATE">
+                                            <date-picker-input position="top-left" date="vm.localTransaction.paymentDate" name="paymentDate">
+                                            </date-picker-input>
+                                        </div>
+                                    </label>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit"
+                    ng-click="vm.saveLocalTrade(vm.localTransactionForm, vm.localTransaction)"
+                    class="btn btn-primary btn-with-icon save-profile">
+                <i class="ion-android-checkmark-circle"></i> Save Local Trade
+            </button>
+            <button type="button" ng-click="vm.cancel()"
+                    class="btn btn-danger btn-with-icon save-profile">
+                <i class="ion-android-cancel"></i>Cancel
+            </button>
+        </div>
+    </form>
+</div>
+

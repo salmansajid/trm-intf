@@ -1,0 +1,63 @@
+.datePickerInput{
+  position: relative;
+  input{
+    height: 32px;
+  }
+  .input-group-btn{
+    position: absolute;
+    top: 0px;
+    right: 35px;
+
+    .btn{
+      height: 30px;
+    }
+
+    .btn-success{
+      background: $primary;
+      border: none;
+    }
+
+    .dropdown-menu {
+      margin: 100px !important;
+    }
+
+    //.btn{
+    //  background: $danger !important;
+    //}
+  }
+
+  .uib-datepicker-popup{
+    background: $my-gray-2;
+  }
+
+}
+
+.uib-daypicker{
+  thead{
+    tr{
+      th{
+        .btn{
+          background: $my-gray-2 !important;
+        }
+      }
+    }
+  }
+  th, .uib-title, .uib-right, .uib-left{
+    background: $my-gray-2 !important;
+    button{
+
+    }
+  }
+  .uib-day{
+
+    button{
+      background: $my-gray-2 !important;
+      .text-info{
+        color: $gray !important;
+      }
+      color: $sidebar-text !important;
+    }
+
+  }
+}
+

@@ -1,0 +1,60 @@
+<div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
+  <a href="#/dashboard" class="al-logo clearfix">
+    <img src="assets/img/favicon-32x32.png" alt="Doni & Company">
+  </a>
+  <!--<p>Doni<span>&</span>Company</p></a>-->
+  <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
+
+  <div class="search search-dropdown">
+    <i class="ion-ios-search-strong" ng-click="startSearch()"></i>
+    <select class="form-control"
+            placeholder="Search Type"
+            name="searchType"
+            ng-model="searchObj.queryType">
+      <option ng-repeat="opt in searchOptions" value="{{opt.id}}">{{opt.name}}</option>
+    </select>
+  </div>
+
+
+  <div class="search">
+    <input id="searchInput" type="text"
+           class="form-control"
+           style="background: #6A6A6A !important;"
+           ng-model="searchObj.query" placeholder="" ng-change="searchQuery(searchObj, lastSearch)">
+    <i ng-show="loading" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+  </div>
+
+  <div class="search-result" ng-show="searchResults.length > 0">
+    <div class="search-item" ng-repeat="result in searchResults" ng-if="resultType==='intFile'"
+         ng-click="goToSearchItem('dashboard.transactionView', {'id': result.file_id})">
+      <div class="detail">
+        <div class="label">FileId</div>
+        <div class="value" ng-bind="result.file_id"></div>
+      </div>
+      <div class="detail">
+        <div class="label">Contract No</div>
+        <div class="value" ng-bind="(result.contract_id ? result.contract_id : 'NA')"></div>
+      </div>
+      <div class="detail">
+        <div class="label">BL No</div>
+        <div class="value"  ng-bind="(result.shipment__bl_no ? result.shipment__bl_no : 'NA')"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="user-profile clearfix">
+    <div class="al-user-profile" uib-dropdown>
+      <a uib-dropdown-toggle class="profile-toggle-link">
+        <img ng-src="{{( userData.data.smallProfilePic | profilePicture )}}">
+      </a>
+      <ul  class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
+        <li><i class="dropdown-arr"></i></li>
+        <li><a ui-sref="dashboard.user.profile({id:userData.data.id})"><i class="fa fa-user"></i>{{userData.data.firstName + ' ' + userData.data.lastName}}</a></li>
+        <li><a ui-sref="dashboard.settings"><i class="fa fa-cog"></i>Settings</a></li>
+        <li ng-click="logout()"><a href class="signout"><i class="fa fa-power-off"></i>Sign out</a></li>
+      </ul>
+    </div>
+    <msg-center></msg-center>
+  </div>
+</div>

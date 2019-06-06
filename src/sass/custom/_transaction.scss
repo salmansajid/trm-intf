@@ -1,0 +1,69 @@
+.expected-commission{
+
+  .commission-title{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-size: 25px;
+  }
+  .commission-value{
+    font-size: 22px;
+    .minus{
+      color: $warning;
+    }
+    .plus{
+      color: $success;
+    }
+  }
+}
+
+.productSpecs{
+  padding-bottom: 20px;
+  h5{
+    margin-top: 10px;
+  }
+}
+
+
+.detail-heading{
+  font-size: 15px;
+  color: $success;
+  border-bottom: 1px solid $border-light;
+  padding-bottom: 3px;
+  font-weight: bold;
+}
+.height-120px{
+  min-height: 120px;
+}
+.transactionView{
+
+  .transactionNo{
+    background: $my-gray-2;
+    overflow: hidden;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    .countryFlag{
+      float: left;
+      margin-right: 10px;
+    }
+    .with-line{
+      font-size: 9px;
+      border-bottom: 1px solid $border-light;
+      font-weight: $font-ultraBold;
+    }
+    .number{
+      font-weight: $font-ultraBold;
+      font-size: 14px;
+      color: $primary;
+      text-overflow: hidden;
+      min-height: 35px;
+    }
+    .name{
+      //position: absolute;
+      //top: 80px;
+      //left: 55px;
+    }
+    .number-space{
+      padding-bottom: 20px;
+    }
+  }
+}

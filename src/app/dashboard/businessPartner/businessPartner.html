@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-md-6 marginBottom10px">
+        <button class="btn btn-primary" data-toggle="modal"
+                ng-click="vm.addBusinessPartner()">
+            Add New Business
+        </button>
+    </div>
+</div>
+
+<br>
+
+<filter-bar
+        ng-show="!vm.showForm"
+        bp-types="true"
+        country="true"
+        on-bp-types-selected-changed="vm.onBpTypesSelectedChanged(selectedList)"
+        on-country-selected-changed="vm.onCountrySelectedChanged(selectedList)">
+</filter-bar>
+
+<div class="row" ng-show="!vm.showForm">
+
+
+
+    <div class="col-md-12">
+
+
+        <div ba-panel ba-panel-class="with-scroll">
+            <div class="row index-container">
+                    <ul class="alphaIndex">
+                        <li ng-class="{'active': (vm.currentIndex === alpha)}" class="alphaIndexItem"
+                            ng-repeat="alpha in vm.alphabet" ng-bind="alpha"
+                            ng-click="vm.setCurrentIndex(alpha)"></li>
+                    </ul>
+                    <div class="totalBusiness"><span class="title">Total Business</span> <span class="count" ng-bind="vm.allBusinessCount"></span></div>
+            </div>
+
+            <div class="horizontal-scroll">
+                <table class="table" st-table="smartTableData">
+                    <thead>
+                    <tr class="sortable table-header">
+                        <th><span class="count">{{vm.allBusiness.length - vm.businessToRemove.length}}</span></th>
+                        <th st-sort="{{heading.stSort}}"
+                            ng-repeat="heading in vm.tableHeadings" ng-bind="heading.name"></th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="business in vm.allBusiness | selectedRows:vm.businessToRemove:'bpId'">
+                        <td></td>
+                        <td class="titled" ng-bind="business.name"></td>
+                        <td ng-if="business.contactPerson">{{business.contactPerson}}</td><td ng-if="!business.contactPerson">No Primary Contact</td>
+                        <td ng-bind="business.country"></td>
+                        <td ng-bind="business.bpTypeStr"></td>
+                        <td ng-if="row.tr_transactionID"><a ui-sref="shell.tradeBook.Transaction({tran:row.tr_transactionID})">{{row.tr_date | date:vm.vm.appFormats.Date}}</a></td><td ng-if="!row.tr_transactionID">No Transaction Done</td>
+                        <td>
+                            <div class="buttons">
+                                <button class="btn btn-success editable-table-button btn-xs" ng-click="vm.goToBusinessReport(business.bpId)">Report</button>
+                                <button class="btn btn-primary editable-table-button btn-xs" ng-click="vm.editBusinessPartner(business)">Edit</button>
+                                <button ng-if="vm.deleteRights" class="btn btn-warning editable-table-button btn-xs" ng-click="vm.deleteBusinessPartner(business)">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

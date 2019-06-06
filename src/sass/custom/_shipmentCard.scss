@@ -1,0 +1,87 @@
+.shipment{
+  min-height: 400px;
+  .shipmentCard{
+    .form-group{
+      .form-control{
+        color: $sidebar !important;
+        &::placeholder {
+          color: $my-gray-2;
+        }
+      }
+      .with-line{
+        color: $sidebar;
+      }
+    }
+
+    .tab-container{
+      .tab{
+        font-size:12px;
+        font-weight:$font-ultraBold;
+        text-align: center;
+        background: $my-gray-2;
+        height: 60px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-left:1px solid $sidebar;
+        color: $sidebar-text;
+        .fa-ship{
+          font-size: 20px;
+        }
+
+        &.active{
+          background: $primary;
+          color: $text-color;
+        }
+
+        .activate{
+          position: relative;
+          right: 5px;
+          bottom: 2px;
+        }
+
+        .edit-button{
+          position: absolute;
+          right: 30px;
+          top: 65px;
+          z-index: 2;
+        }
+
+
+      }
+
+      .detail, .form{
+
+        min-height: 450px;
+
+        background: $body-bg;
+        padding-bottom: 20px;
+        h3.with-line{
+          color: $text-color;
+          margin-bottom: 5px;
+          line-height: 30px;
+        }
+        .number{
+          height: 48px;
+          overflow: hidden;
+          color: $text-color;
+          font-weight: $font-bold;
+        }
+
+      }
+
+      .detail{
+        overflow: hidden;
+        .port-transit{
+          color: $text-color;
+          font-weight: $font-bold;
+        }
+
+      }
+
+      .form{
+        padding-top: 40px;
+        overflow: visible;
+      }
+    }
+  }
+}
